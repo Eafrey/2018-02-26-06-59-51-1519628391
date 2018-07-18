@@ -10,39 +10,37 @@ class Teacher extends Person {
     }
 
     introduce() {
-        if(this.klasses == undefined || this.klasses.length == 0) {
+        if (this.klasses == undefined || this.klasses.length == 0) {
             return super.introduce() + ` I am a Teacher. I teach No Class.`;
-        } else {
-            let ks = "";
-            for(let i in this.klasses) {
-                if(i != this.klasses.length-1) {
-                    ks += this.klasses[i].number + ', ';
-                } else {
-                    ks += this.klasses[i].number;
-                }
-
-            }
-            return super.introduce() + ` I am a Teacher. I teach Class `+ ks + `.`;
         }
+
+        // let ks = "";
+        // for(let i in this.klasses) {
+        //     if(i != this.klasses.length-1) {
+        //         ks += this.klasses[i].number + ', ';
+        //     } else {
+        //         ks += this.klasses[i].number;
+        //     }
+        // }
+        
+        let arr = new Array();
+        this.klasses.forEach(element => {
+            arr.push(element.number);
+        });
+        let ks = arr.join(", ");
+
+        return super.introduce() + ` I am a Teacher. I teach Class ` + ks + `.`;
     }
 
     introduceWith(stu) {
         let res = super.introduce();
-        if(this.klass.number === stu.klass.number)  {
+        if (this.klass.number === stu.klass.number) {
             res += ` I am a Teacher. I teach ${stu.name}.`;
         } else {
             res += ` I am a Teacher. I don't teach ${stu.name}.`;
         }
 
         return res;
-    }
-
-    knowLeader(stu) {
-        console.log(`I am ${this.name}. I know ${stu.name} become Leader of Class ${this.number}.`);
-    }
-
-    knowMember(stu) {
-        console.log(`I am ${this.name}. I know ${stu.name} has joined Class ${this.number}.`);
     }
 }
 
