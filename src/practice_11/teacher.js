@@ -23,11 +23,7 @@ class Teacher extends Person {
         //     }
         // }
         
-        let arr = new Array();
-        this.klasses.forEach(element => {
-            arr.push(element.number);
-        });
-        let ks = arr.join(", ");
+        let ks = this.klasses.map(item => item.number).join(', ');
 
         return super.introduce() + ` I am a Teacher. I teach Class ` + ks + `.`;
     }
